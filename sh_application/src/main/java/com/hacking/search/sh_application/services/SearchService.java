@@ -4,7 +4,6 @@ import com.hacking.search.sh_application.models.Result;
 import com.hacking.search.sh_application.models.Search;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service

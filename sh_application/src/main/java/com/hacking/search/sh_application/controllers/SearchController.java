@@ -18,7 +18,7 @@ public class SearchController {
             return ResponseEntity.ok(SearchService.getResultList(query));
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
