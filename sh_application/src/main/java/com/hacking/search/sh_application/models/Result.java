@@ -5,12 +5,14 @@ import java.util.HashMap;
 public class Result {
     private String title;
     private String url;
+    private String description;
 
     public Result() {}
 
     public Result(String title, String url, String description) {
         this.title = title;
         this.url = url;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -27,6 +29,14 @@ public class Result {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public HashMap<String, String> toHashMap() {

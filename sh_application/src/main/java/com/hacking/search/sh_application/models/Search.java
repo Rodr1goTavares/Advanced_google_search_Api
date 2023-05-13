@@ -9,9 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-* actual problem: The query is null
-* */
+
 public class Search {
     private String query;
     private String url;
@@ -23,29 +21,28 @@ public class Search {
         this.doc = Jsoup.connect(url).get();
     }
 
-    public List<Result> getLinks() throws Exception {
-            List<Result> resultLinksList = new ArrayList<>();
-        try {
-            Elements searchResults = this.doc.select("div.g");
+    public List<Result> getLinks() {
+        List<Result> resultLinksList = new ArrayList<>();
+        
+        Elements searchResults = this.doc.select("div.g");
 
-            for (Element result : searchResults) {
-                Element resultLink = result.selectFirst("a");
-                String title = resultLink.text();
-                String url = resultLink.attr("href");
+        for (Element result : searchResults) {
+            Element resultLink = result.selectFirst("a");
+                
+            String title = resultLink.text();
+            String resultUrl = resultLink.attr("href");
+            String description = resultLink.selectXpath("/html/body/div[7]/div/div[11]/div/div[2]/div[2]/div/div/div[7]/div/div/div[2]/div/span").text();
 
-                if (url.startsWith("/url?q=")) {
-                    this.url = url.substring(7);
-                }
-
-                Result resultObj = new Result();
-                resultObj.setTitle(resultLink.text());
-                resultObj.setUrl(resultLink.attr("href"));
-                resultLinksList.add(resultObj);
+            if (url.startsWith("/url?q=")) {
+                this.url = url.substring(7);
             }
-            return resultLinksList;
-        }
-        catch (Exception error) {
-            throw new RuntimeException(error);
-        }
+
+            Result resultObj = new Result();
+            resultObj.setTitle(title);
+            resultObj.setUrl(resultUrl);
+            resultObj.setDescription(description);
+            resultLinksList.add(resultObj);
+        } 
+        return resultLinksList;
     }
 }
