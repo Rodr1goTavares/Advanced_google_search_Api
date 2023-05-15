@@ -1,4 +1,4 @@
-# Api de vusca avançada(Google hacking)
+# Api de busca avançada(Google hacking)
 
 ( Em desenvolvimento )
 
